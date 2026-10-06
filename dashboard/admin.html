@@ -1,1 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Admin Control — TR MUSIC</title>
+    
+    <!-- Ultra Stylish Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&family=Syne:wght@700;800&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main Custom CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="dashboard-body">
 
+    <!-- Glowing Background Orbs -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+
+    <!-- Top Navigation -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="../index.html" class="logo">TR <span>MUSIC</span></a>
+            <div class="user-badge badge-master-admin">
+                <i class="fas fa-crown"></i>
+                <span>Master Admin: Sandeep Kumar</span>
+            </div>
+            <a href="../login.html" class="btn btn-glass btn-sm"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </header>
+
+    <div class="container dashboard-container">
+        
+        <!-- Header Banner -->
+        <div class="dashboard-header glass-card">
+            <div>
+                <h2>Rights Management <span>Control Center</span></h2>
+                <p>Review song submissions, issue Content ID matches, and enforce copyright clearance.</p>
+            </div>
+            <div class="admin-actions">
+                <span class="security-tag"><i class="fas fa-user-shield"></i> Master Access Enabled</span>
+            </div>
+        </div>
+
+        <!-- System Stats Grid -->
+        <div class="admin-stats-grid">
+            <div class="glass-card stat-card">
+                <div class="stat-icon"><i class="fas fa-compact-disc"></i></div>
+                <div class="stat-info">
+                    <span class="stat-label">TOTAL CATALOG</span>
+                    <span class="stat-value">1,248</span>
+                </div>
+            </div>
+
+            <div class="glass-card stat-card">
+                <div class="stat-icon warning-icon"><i class="fas fa-clock"></i></div>
+                <div class="stat-info">
+                    <span class="stat-label">PENDING REVIEWS</span>
+                    <span class="stat-value text-warning">2</span>
+                </div>
+            </div>
+
+            <div class="glass-card stat-card">
+                <div class="stat-icon success-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="stat-info">
+                    <span class="stat-label">ACTIVE CLAIMS</span>
+                    <span class="stat-value text-success">86</span>
+                </div>
+            </div>
+
+            <div class="glass-card stat-card">
+                <div class="stat-icon"><i class="fas fa-users-cog"></i></div>
+                <div class="stat-info">
+                    <span class="stat-label">SUB-ADMINS</span>
+                    <span class="stat-value">32</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Master Approvals Table -->
+        <div class="glass-card table-card" style="margin-top: 30px;">
+            <div class="table-header">
+                <h3><i class="fas fa-tasks"></i> Pending Submissions Queue</h3>
+                <span class="badge-tag">Action Required</span>
+            </div>
+
+            <div class="table-wrapper">
+                <table id="masterAdminTable">
+                    <thead>
+                        <tr>
+                            <th>Track & Cover</th>
+                            <th>Sub-Admin / Label</th>
+                            <th>Artist / Composer</th>
+                            <th>ISRC Code</th>
+                            <th>Submitted Date</th>
+                            <th>Status</th>
+                            <th>Decision Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="row-1">
+                            <td>
+                                <div class="track-cell">
+                                    <div class="track-art"><i class="fas fa-music"></i></div>
+                                    <div>
+                                        <b>Dil Ki Batein</b>
+                                        <div class="audio-player-link"><i class="fas fa-play-circle"></i> Preview WAV</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Sunrise Music Studio</td>
+                            <td>Rohan Sharma <br><small class="muted-text">Comp: Hariom Kumar</small></td>
+                            <td><code>IN-TRM-26-00102</code></td>
+                            <td>2026-10-05</td>
+                            <td><span class="status status-pending" id="status-1"><i class="fas fa-clock"></i> Pending</span></td>
+                            <td>
+                                <div class="action-btns" id="actions-1">
+                                    <button class="btn-sm btn-approve" onclick="approveTrack(1)"><i class="fas fa-check"></i> Approve</button>
+                                    <button class="btn-sm btn-reject" onclick="rejectTrack(1)"><i class="fas fa-times"></i> Reject</button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr id="row-2">
+                            <td>
+                                <div class="track-cell">
+                                    <div class="track-art"><i class="fas fa-music"></i></div>
+                                    <div>
+                                        <b>Tere Bina</b>
+                                        <div class="audio-player-link"><i class="fas fa-play-circle"></i> Preview WAV</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Beatbox Records</td>
+                            <td>Arijit V. <br><small class="muted-text">Comp: Deepak Kumar</small></td>
+                            <td><code>IN-TRM-26-00103</code></td>
+                            <td>2026-10-06</td>
+                            <td><span class="status status-pending" id="status-2"><i class="fas fa-clock"></i> Pending</span></td>
+                            <td>
+                                <div class="action-btns" id="actions-2">
+                                    <button class="btn-sm btn-approve" onclick="approveTrack(2)"><i class="fas fa-check"></i> Approve</button>
+                                    <button class="btn-sm btn-reject" onclick="rejectTrack(2)"><i class="fas fa-times"></i> Reject</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
