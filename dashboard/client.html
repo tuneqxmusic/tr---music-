@@ -183,6 +183,7 @@
             gap: 6px;
         }
         .status-approved { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
+        .status-pending { background: rgba(234, 179, 8, 0.15); color: #fde047; border: 1px solid rgba(234, 179, 8, 0.3); }
 
         .btn {
             padding: 8px 16px;
@@ -200,6 +201,80 @@
         .btn-gold { background: linear-gradient(135deg, var(--gold), var(--gold-glow)); color: #000; }
         .btn-glass { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-glow); color: #fff; }
         .btn-sm { padding: 5px 10px; font-size: 12px; }
+
+        /* Modal Overlay & Upload Form Styling */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 8, 17, 0.88);
+            backdrop-filter: blur(10px);
+            z-index: 200;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .modal-content {
+            width: 100%;
+            max-width: 850px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid var(--border-glow);
+            box-shadow: 0 0 30px rgba(201, 161, 92, 0.15);
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-glow);
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+        }
+        .modal-header h3 { font-family: var(--font-head); font-size: 20px; color: var(--gold); }
+        .close-btn { font-size: 24px; cursor: pointer; color: var(--text-muted); }
+        .close-btn:hover { color: #fff; }
+
+        .form-section-title {
+            font-family: var(--font-code);
+            font-size: 12px;
+            color: var(--gold);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin: 20px 0 12px;
+            border-bottom: 1px dashed rgba(201, 161, 92, 0.2);
+            padding-bottom: 4px;
+        }
+
+        .form-row { display: flex; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
+        .form-group { flex: 1; min-width: 240px; }
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-family: var(--font-code);
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-glow);
+            border-radius: 8px;
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 10px rgba(201, 161, 92, 0.2);
+        }
+        .form-group input[type="file"] {
+            padding: 8px;
+            background: rgba(201, 161, 92, 0.05);
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -219,7 +294,7 @@
 
             <div class="menu-category">Catalog & Releases</div>
             <a class="nav-item"><i class="fas fa-music"></i> My Tracks & Songs</a>
-            <a class="nav-item"><i class="fas fa-cloud-arrow-up"></i> Submit New Music</a>
+            <a class="nav-item" onclick="openUploadModal()"><i class="fas fa-cloud-arrow-up"></i> Submit New Music</a>
 
             <div class="menu-category">Rights & Protection</div>
             <a class="nav-item"><i class="fas fa-shield-halved"></i> Declared Rights</a>
@@ -261,7 +336,7 @@
                     <h2>TR Music Creator Portal</h2>
                     <p>प्रबंधित करें अपने गाने, कॉपीराइट अधिकार, डिजिटल आय और यूट्यूब सुरक्षा निवेदन।</p>
                 </div>
-                <button class="btn btn-gold" onclick="alert('Opening music submission wizard...')"><i class="fas fa-plus"></i> Submit New Track</button>
+                <button class="btn btn-gold" onclick="openUploadModal()"><i class="fas fa-plus"></i> Submit New Track</button>
             </div>
 
             <div class="kpi-grid">
@@ -305,11 +380,160 @@
                             <td><span class="status-badge status-approved"><i class="fas fa-check"></i> Approved</span></td>
                             <td><button class="btn btn-glass btn-sm">View Details</button></td>
                         </tr>
+                        <tr>
+                            <td><b>Dil Ki Baatein</b><br><small style="color: var(--text-muted);">Asset: TRM-2026-000802</small></td>
+                            <td><code>IN-TRM-26-00102</code></td>
+                            <td>Master Rights (100%)</td>
+                            <td>Worldwide</td>
+                            <td><span class="status-badge status-pending"><i class="fas fa-clock"></i> Under Review</span></td>
+                            <td><button class="btn btn-gold btn-sm" onclick="openUploadModal()">Update Info</button></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </main>
     </div>
 
+    <!-- Complete Song Submission Modal Wizard -->
+    <div id="uploadModal" class="modal-overlay" style="display: none;">
+        <div class="glass-card modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-cloud-arrow-up"></i> New Music Submission Wizard</h3>
+                <span class="close-btn" onclick="closeUploadModal()">&times;</span>
+            </div>
+
+            <form id="fullSongUploadForm" onsubmit="submitSongForm(event)">
+                
+                <!-- Section 1: Track Metadata -->
+                <div class="form-section-title"><i class="fas fa-info-circle"></i> 1. Track Basic Details</div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Song Title (गाने का नाम) *</label>
+                        <input type="text" placeholder="e.g. Tu Yaad Aata Hai" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Alternate Title / Version</label>
+                        <input type="text" placeholder="e.g. Lofi Remix / Acoustic Version">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Language (भाषा) *</label>
+                        <select required>
+                            <option value="Hindi">Hindi</option>
+                            <option value="Punjabi">Punjabi</option>
+                            <option value="Bhojpuri">Bhojpuri</option>
+                            <option value="Haryanvi">Haryanvi</option>
+                            <option value="English">English</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Genre *</label>
+                        <select required>
+                            <option value="Romantic">Romantic / Sad</option>
+                            <option value="Pop">Pop / Commercial</option>
+                            <option value="Hip-Hop">Hip-Hop / Rap</option>
+                            <option value="Folk">Folk / Traditional</option>
+                            <option value="Devotional">Devotional / Bhakti</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Section 2: Credits -->
+                <div class="form-section-title"><i class="fas fa-users"></i> 2. Artist & Production Credits</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Primary Singer / Artist *</label>
+                        <input type="text" placeholder="e.g. Deepak Kumar" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Music Composer / Director *</label>
+                        <input type="text" placeholder="e.g. Hariom Kumar" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Lyricist (गीतकार) *</label>
+                        <input type="text" placeholder="e.g. Deepak Kumar" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Producer / Label Name *</label>
+                        <input type="text" placeholder="e.g. Sandeep Music Company" required>
+                    </div>
+                </div>
+
+                <!-- Section 3: Identifiers & Rights -->
+                <div class="form-section-title"><i class="fas fa-barcode"></i> 3. Identifiers & Territory</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>ISRC Code (If available)</label>
+                        <input type="text" placeholder="IN-TRM-26-XXXXX">
+                    </div>
+                    <div class="form-group">
+                        <label>UPC / EAN Code (Optional)</label>
+                        <input type="text" placeholder="890XXXXXXXXXX">
+                    </div>
+                    <div class="form-group">
+                        <label>Territory Policy *</label>
+                        <select required>
+                            <option value="Worldwide">Worldwide (Global Protection)</option>
+                            <option value="India Only">India Only</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Section 4: File Uploads (Audio, Video, Thumbnail & Docs) -->
+                <div class="form-section-title"><i class="fas fa-photo-film"></i> 4. Media & Document Uploads</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-file-audio"></i> Master Audio File (.WAV / .MP3) *</label>
+                        <input type="file" accept="audio/*" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-file-image"></i> Cover Art / Thumbnail (3000x3000px JPG/PNG) *</label>
+                        <input type="file" accept="image/*" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-file-video"></i> Video File (.MP4 - Optional)</label>
+                        <input type="file" accept="video/*">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-file-pdf"></i> Ownership Proof / Agreement Doc (.PDF)</label>
+                        <input type="file" accept=".pdf,image/*">
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 24px;">
+                    <button type="button" class="btn btn-glass" onclick="closeUploadModal()">Cancel</button>
+                    <button type="submit" class="btn btn-gold"><i class="fas fa-paper-plane"></i> Submit Song to Sandeep Kumar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openUploadModal() {
+            document.getElementById('uploadModal').style.display = 'flex';
+        }
+
+        function closeUploadModal() {
+            document.getElementById('uploadModal').style.display = 'none';
+        }
+
+        function submitSongForm(e) {
+            e.preventDefault();
+            alert("Song and all media files submitted successfully! Sandeep Kumar (Master Admin) will review your submission.");
+            closeUploadModal();
+        }
+    </script>
 </body>
 </html>
