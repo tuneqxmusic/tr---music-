@@ -3,14 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TuneQX Rights Management — Master Admin Control Center</title>
+    <title>TR Music — Master Admin Control Center</title>
     
-    <!-- Premium Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -40,7 +37,6 @@
             overflow: hidden;
         }
 
-        /* Glassmorphism Background Orbs */
         .orb {
             position: fixed;
             border-radius: 50%;
@@ -52,7 +48,6 @@
         .orb-1 { width: 400px; height: 400px; background: var(--gold); top: -100px; left: -100px; }
         .orb-2 { width: 500px; height: 500px; background: #6366f1; bottom: -150px; right: -150px; }
 
-        /* Left Sidebar */
         .sidebar {
             width: 280px;
             background: rgba(10, 15, 29, 0.95);
@@ -68,7 +63,7 @@
         }
         .sidebar-brand h1 {
             font-family: var(--font-head);
-            font-size: 20px;
+            font-size: 22px;
             color: var(--gold);
             letter-spacing: 1px;
         }
@@ -79,11 +74,7 @@
             margin-top: 2px;
         }
 
-        .sidebar-menu {
-            flex: 1;
-            overflow-y: auto;
-            padding: 16px 12px;
-        }
+        .sidebar-menu { flex: 1; overflow-y: auto; padding: 16px 12px; }
         .menu-category {
             font-family: var(--font-code);
             font-size: 10px;
@@ -110,9 +101,7 @@
             color: var(--gold-glow);
             border-left: 3px solid var(--gold);
         }
-        .nav-item i { width: 20px; font-size: 16px; }
 
-        /* Main Content Layout */
         .main-wrapper {
             flex: 1;
             display: flex;
@@ -121,7 +110,6 @@
             overflow: hidden;
         }
 
-        /* Top Header */
         .top-header {
             height: 70px;
             border-bottom: 1px solid var(--border-glow);
@@ -150,11 +138,6 @@
             font-size: 13px;
             width: 100%;
         }
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
         .user-profile {
             display: flex;
             align-items: center;
@@ -164,10 +147,10 @@
             padding-left: 20px;
         }
         .avatar {
-            width: 36px;
-            height: 36px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
-            background: var(--gold);
+            background: linear-gradient(135deg, var(--gold), var(--gold-glow));
             color: #000;
             display: flex;
             align-items: center;
@@ -175,12 +158,7 @@
             font-weight: 700;
         }
 
-        /* Content Dashboard Body */
-        .dashboard-body {
-            flex: 1;
-            overflow-y: auto;
-            padding: 32px;
-        }
+        .dashboard-body { flex: 1; overflow-y: auto; padding: 32px; }
 
         .header-title-box {
             display: flex;
@@ -188,16 +166,8 @@
             align-items: center;
             margin-bottom: 28px;
         }
-        .header-title-box h2 {
-            font-family: var(--font-head);
-            font-size: 26px;
-        }
-        .header-title-box p {
-            color: var(--text-muted);
-            font-size: 13px;
-        }
+        .header-title-box h2 { font-family: var(--font-head); font-size: 26px; }
 
-        /* KPI Cards Grid */
         .kpi-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -210,29 +180,10 @@
             border-radius: 12px;
             padding: 20px;
             backdrop-filter: blur(12px);
-            position: relative;
         }
-        .kpi-title {
-            font-family: var(--font-code);
-            font-size: 11px;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-        }
-        .kpi-value {
-            font-family: var(--font-head);
-            font-size: 26px;
-            color: #fff;
-            margin: 8px 0 4px;
-        }
-        .kpi-badge {
-            font-size: 11px;
-            color: var(--success);
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
+        .kpi-title { font-family: var(--font-code); font-size: 11px; color: var(--text-muted); }
+        .kpi-value { font-family: var(--font-head); font-size: 26px; color: #fff; margin: 8px 0 4px; }
 
-        /* Tables & Cards */
         .glass-card {
             background: var(--bg-card);
             border: 1px solid var(--border-glow);
@@ -241,37 +192,11 @@
             backdrop-filter: blur(12px);
             margin-bottom: 24px;
         }
-        .card-header-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .card-header-flex h3 {
-            font-family: var(--font-head);
-            font-size: 18px;
-        }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-            font-size: 13px;
-        }
-        th, td {
-            padding: 14px 16px;
-            border-bottom: 1px solid rgba(201, 161, 92, 0.1);
-        }
-        th {
-            font-family: var(--font-code);
-            color: var(--gold);
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            background: rgba(0, 0, 0, 0.2);
-        }
-        
-        /* Badges & Buttons */
+        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; }
+        th, td { padding: 14px 16px; border-bottom: 1px solid rgba(201, 161, 92, 0.1); }
+        th { font-family: var(--font-code); color: var(--gold); font-size: 11px; text-transform: uppercase; background: rgba(0, 0, 0, 0.2); }
+
         .status-badge {
             padding: 4px 10px;
             border-radius: 20px;
@@ -281,8 +206,8 @@
             align-items: center;
             gap: 6px;
         }
-        .status-pending { background: rgba(234, 179, 8, 0.15); color: #fde047; border: 1px solid rgba(234, 179, 8, 0.3); }
         .status-active { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.3); }
+        .status-pending { background: rgba(234, 179, 8, 0.15); color: #fde047; border: 1px solid rgba(234, 179, 8, 0.3); }
 
         .btn {
             padding: 8px 16px;
@@ -297,28 +222,9 @@
             align-items: center;
             gap: 6px;
         }
-        .btn-gold {
-            background: linear-gradient(135deg, var(--gold), var(--gold-glow));
-            color: #000;
-            box-shadow: 0 0 15px rgba(201, 161, 92, 0.3);
-        }
-        .btn-gold:hover { transform: translateY(-1px); }
-        .btn-glass {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-glow);
-            color: #fff;
-        }
+        .btn-gold { background: linear-gradient(135deg, var(--gold), var(--gold-glow)); color: #000; }
+        .btn-glass { background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-glow); color: #fff; }
         .btn-sm { padding: 5px 10px; font-size: 12px; }
-        
-        .integration-tag {
-            font-family: var(--font-code);
-            font-size: 11px;
-            color: #38bdf8;
-            background: rgba(56, 189, 248, 0.1);
-            padding: 2px 8px;
-            border-radius: 4px;
-            border: 1px solid rgba(56, 189, 248, 0.2);
-        }
     </style>
 </head>
 <body>
@@ -326,11 +232,10 @@
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
 
-    <!-- Left Navigation Sidebar -->
     <aside class="sidebar">
         <div class="sidebar-brand">
-            <h1>TuneQX Studio</h1>
-            <p>MASTER RIGHTS MANAGEMENT</p>
+            <h1>TR Music</h1>
+            <p>MASTER ADMIN CONTROL</p>
         </div>
 
         <div class="sidebar-menu">
@@ -353,137 +258,84 @@
 
             <div class="menu-category">System Admin</div>
             <a class="nav-item"><i class="fas fa-plug"></i> Integrations</a>
-            <a class="nav-item"><i class="fas fa-user-shield"></i> System Security</a>
+            <a class="nav-item"><i class="fas fa-user-shield"></i> Security Audit Logs</a>
         </div>
     </aside>
 
-    <!-- Main Wrapper -->
     <div class="main-wrapper">
-        
-        <!-- Top Header -->
         <header class="top-header">
             <div class="search-bar">
                 <i class="fas fa-search" style="color: var(--text-muted);"></i>
-                <input type="text" placeholder="Search Asset ID, ISRC, Client, Video ID...">
+                <input type="text" placeholder="Search Master Catalog, ISRCs, Clients...">
             </div>
 
-            <div class="header-actions">
-                <span class="integration-tag"><i class="fas fa-plug"></i> Integration Required</span>
-                <div class="user-profile">
-                    <div class="avatar">H</div>
-                    <div>
-                        <div style="font-weight: 600;">Hariom</div>
-                        <div style="font-size: 11px; color: var(--gold); font-family: var(--font-code);">Founder / Master Admin</div>
-                    </div>
+            <div class="user-profile">
+                <div class="avatar">SK</div>
+                <div>
+                    <div style="font-weight: 600;">Sandeep Kumar</div>
+                    <div style="font-size: 11px; color: var(--gold); font-family: var(--font-code);">devilboy@gmail.com</div>
                 </div>
             </div>
         </header>
 
-        <!-- Dashboard Content -->
         <main class="dashboard-body">
-            
             <div class="header-title-box">
                 <div>
-                    <h2>Master Control Center</h2>
-                    <p>Global oversight of verified audio catalog, claim enforcement queues, and client accounts.</p>
+                    <h2>TR Music Master Control Center</h2>
+                    <p>Global oversight of verified audio tracks, YouTube Content ID matches, and rights enforcement.</p>
                 </div>
-                <button class="btn btn-gold"><i class="fas fa-plus"></i> Add New Master Asset</button>
+                <button class="btn btn-gold"><i class="fas fa-plus"></i> Add Master Asset</button>
             </div>
 
-            <!-- Top KPI Cards -->
             <div class="kpi-grid">
                 <div class="kpi-card">
-                    <div class="kpi-title">TOTAL CLIENT ASSETS</div>
-                    <div class="kpi-value">1,542</div>
-                    <div class="kpi-badge"><i class="fas fa-arrow-up"></i> +12% this month</div>
+                    <div class="kpi-title">TOTAL CATALOG ASSETS</div>
+                    <div class="kpi-value">1,842</div>
                 </div>
                 <div class="kpi-card">
                     <div class="kpi-title">PENDING MATCH REVIEWS</div>
-                    <div class="kpi-value" style="color: var(--gold);">14</div>
-                    <div class="kpi-badge" style="color: var(--gold);"><i class="fas fa-clock"></i> Requires Verification</div>
+                    <div class="kpi-value" style="color: var(--gold);">18</div>
                 </div>
                 <div class="kpi-card">
                     <div class="kpi-title">ACTIVE CLAIMS</div>
-                    <div class="kpi-value">842</div>
-                    <div class="kpi-badge"><i class="fas fa-check"></i> 100% Rights Verified</div>
+                    <div class="kpi-value">920</div>
                 </div>
                 <div class="kpi-card">
-                    <div class="kpi-title">ESTIMATED REVENUE</div>
-                    <div class="kpi-value">$24,890</div>
-                    <div class="kpi-badge"><i class="fas fa-arrow-up"></i> Reconciled USD</div>
+                    <div class="kpi-title">RECONCILED REVENUE</div>
+                    <div class="kpi-value">₹4,85,000</div>
                 </div>
             </div>
 
-            <!-- YouTube Match Queue Table -->
             <div class="glass-card">
-                <div class="card-header-flex">
-                    <div>
-                        <h3><i class="fas fa-shield-cat" style="color: var(--gold);"></i> YouTube Audio Match Review Queue</h3>
-                        <p style="font-size: 12px; color: var(--text-muted); margin-top: 2px;">Manual verification required before executing copyright enforcement.</p>
-                    </div>
-                    <button class="btn btn-glass btn-sm"><i class="fas fa-filter"></i> Filter Queue</button>
-                </div>
-
+                <h3 style="font-family: var(--font-head); margin-bottom: 16px;"><i class="fas fa-shield-cat" style="color: var(--gold);"></i> Pending Song Verifications Queue</h3>
                 <table>
                     <thead>
                         <tr>
-                            <th>Asset ID & Song Title</th>
+                            <th>Asset ID & Track Title</th>
                             <th>ISRC</th>
-                            <th>Matched Video / Channel</th>
-                            <th>Confidence</th>
-                            <th>Ownership Check</th>
+                            <th>Submitted By</th>
+                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>
-                                <b>Tu Yaad Aata Hai</b><br>
-                                <small style="color: var(--text-muted);">Asset: TQX-2026-000154</small>
-                            </td>
-                            <td><code>IN-TQX-26-00101</code></td>
-                            <td>
-                                <b>Night Vibes Podcast #42</b><br>
-                                <small style="color: var(--text-muted);">Channel ID: UCx92A...81K</small>
-                            </td>
-                            <td><span style="color: #4ade80; font-family: var(--font-code); font-weight: 700;">98.4% Match</span></td>
-                            <td><span class="status-badge status-active"><i class="fas fa-check-circle"></i> Verified (100%)</span></td>
-                            <td>
-                                <button class="btn btn-gold btn-sm" onclick="alert('Claim verification complete.')">Review & Claim</button>
-                            </td>
+                            <td><b>Tere Sang Yaara</b><br><small style="color: var(--text-muted);">Asset: TRM-2026-000801</small></td>
+                            <td><code>IN-TRM-26-00101</code></td>
+                            <td>Sandeep Music Company</td>
+                            <td><span class="status-badge status-active"><i class="fas fa-check"></i> Verified</span></td>
+                            <td><button class="btn btn-glass btn-sm">Inspect</button></td>
                         </tr>
                         <tr>
-                            <td>
-                                <b>Adhuri Mohabbat</b><br>
-                                <small style="color: var(--text-muted);">Asset: TQX-2026-000155</small>
-                            </td>
-                            <td><code>IN-TQX-26-00102</code></td>
-                            <td>
-                                <b>Sad Songs Lofi Remix 2026</b><br>
-                                <small style="color: var(--text-muted);">Channel ID: UCm01B...22L</small>
-                            </td>
-                            <td><span style="color: #fde047; font-family: var(--font-code); font-weight: 700;">82.1% Match</span></td>
+                            <td><b>Dil Ki Baatein</b><br><small style="color: var(--text-muted);">Asset: TRM-2026-000802</small></td>
+                            <td><code>IN-TRM-26-00102</code></td>
+                            <td>Deepak Kumar Studio</td>
                             <td><span class="status-badge status-pending"><i class="fas fa-clock"></i> Pending Evidence</span></td>
-                            <td>
-                                <button class="btn btn-glass btn-sm" onclick="alert('Ownership documents required from client.')">Request Proof</button>
-                            </td>
+                            <td><button class="btn btn-gold btn-sm" onclick="alert('Verification approved by Sandeep Kumar')">Approve</button></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-
-            <!-- Audit Logs & System Status -->
-            <div class="glass-card">
-                <div class="card-header-flex">
-                    <h3><i class="fas fa-list-check" style="color: var(--gold);"></i> System Security Audit Logs</h3>
-                    <span style="font-size: 12px; color: var(--text-muted); font-family: var(--font-code);">Immutable Admin Logs</span>
-                </div>
-                <div style="font-size: 13px; color: var(--text-muted);">
-                    <p style="margin-bottom: 8px;"><strong style="color: #fff;">[2026-10-06 18:00 UTC]</strong> Admin <b>Hariom</b> approved Master Rights verification for track <code>IN-TQX-26-00101</code>.</p>
-                    <p><strong style="color: #fff;">[2026-10-06 16:30 UTC]</strong> Ownership Conflict Flagged: Total rights exceeded 100% for Asset <code>TQX-2026-000190</code> (Auto-Restricted).</p>
-                </div>
-            </div>
-
         </main>
     </div>
 
