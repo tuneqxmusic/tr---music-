@@ -20,13 +20,13 @@
         <div class="glass-card login-card">
             <div class="login-header">
                 <a href="index.html" class="logo">TR <span>MUSIC</span></a>
-                <p class="login-subtitle">Enter credentials to access Portal</p>
+                <p class="login-subtitle">TR Music Portal Access</p>
             </div>
 
-            <form class="login-form">
+            <form class="login-form" id="loginForm">
                 <div class="form-group">
-                    <label><i class="fas fa-envelope"></i> Partner Email / ID</label>
-                    <input type="email" id="loginEmail" placeholder="e.g. sandeep@trmusic.com or client@trmusic.com" required>
+                    <label><i class="fas fa-envelope"></i> Email Identity</label>
+                    <input type="email" id="loginEmail" placeholder="devilboy@gmail.com (Master Admin)" required>
                 </div>
 
                 <div class="form-group">
@@ -35,7 +35,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-glow btn-block">
-                    <i class="fas fa-sign-in-alt"></i> Access Panel
+                    <i class="fas fa-sign-in-alt"></i> Access Secure Portal
                 </button>
             </form>
 
@@ -45,6 +45,20 @@
         </div>
     </div>
 
-    <script src="js/main.js"></script>
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const email = document.getElementById("loginEmail").value.trim().toLowerCase();
+            
+            // Explicit Master Admin Authentication Check
+            if (email === "devilboy@gmail.com") {
+                alert("Master Admin Access Granted! Opening Control Center...");
+                window.location.href = "dashboard/admin.html";
+            } else {
+                alert("Client Access Authenticated. Opening Artist Portal...");
+                window.location.href = "dashboard/client.html";
+            }
+        });
+    </script>
 </body>
 </html>
