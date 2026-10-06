@@ -1,1 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — TR MUSIC Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&family=Syne:wght@700;800&family=Space+Grotesk:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="login-body">
 
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+
+    <div class="login-wrapper">
+        <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        <div class="glass-card login-card">
+            <div class="login-header">
+                <a href="index.html" class="logo">TR <span>MUSIC</span></a>
+                <p class="login-subtitle">Enter credentials to access Portal</p>
+            </div>
+
+            <form class="login-form">
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Partner Email / ID</label>
+                    <input type="email" id="loginEmail" placeholder="e.g. sandeep@trmusic.com or client@trmusic.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-key"></i> Access Key / Password</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••••••" required>
+                </div>
+
+                <button type="submit" class="btn btn-glow btn-block">
+                    <i class="fas fa-sign-in-alt"></i> Access Panel
+                </button>
+            </form>
+
+            <div class="login-footer">
+                <p>Managed & Directed by <strong>Sandeep Kumar</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
